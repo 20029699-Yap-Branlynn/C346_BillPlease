@@ -68,10 +68,20 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     newAmt = amt;
                 }
-                
-                String totalAmt = String.format("%.2f", newAmt);
+
+                double finalAmt = 0;
+                String data3 = discount.getText().toString();
+                int num = Integer.parseInt(data3);
+                if (discount.isEnabled() == true){
+                    double percent = 100 - num;
+                    finalAmt = (newAmt/100) * percent;
+                } else {
+                    finalAmt = newAmt;
+                }
+
+                String totalAmt = String.format("%.2f", finalAmt);
                 total.setText("Total Bill: $" + totalAmt);
-                double eachPaxAmt = newAmt/pax;
+                double eachPaxAmt = finalAmt/pax;
                 int payment = radioGp.getCheckedRadioButtonId();
                 if (payment == R.id.radioButtonCash){
                     String paxAmt = String.format("%.2f", eachPaxAmt);
